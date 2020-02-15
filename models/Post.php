@@ -42,21 +42,32 @@ class Post
 
         try
         {
-            $opertaion = $this->pdo->prepare("INSERT INTO posts (title, body, slug) VALUES(:title, :body, :slug)");
-            $success = $opertaion->execute([
-                ':title' => $title,
-                ':body' => $body,
-                ':slug' => $slug
-            ]);
+            // Check to see if post already exists.
+            $result = $this->getPostBySlug($slug);
 
-            if($success)
+            if(!$result)
             {
-                return true;
+                $opertaion = $this->pdo->prepare("INSERT INTO posts (title, body, slug) VALUES(:title, :body, :slug)");
+                $success = $opertaion->execute([
+                    ':title' => $title,
+                    ':body' => $body,
+                    ':slug' => $slug
+                ]);
+
+                if($success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+            
         }
         catch(PDOException $e)
         {
@@ -86,35 +97,56 @@ class Post
         }  
     }
 
-    public function deleteBySlug($slug)
+    // Delete post by slug.
+    public function delete($slug)
     {
         try
         {
-            $opertaion = $this->pdo->prepare("SELECT * FROM posts WHERE slug=:slug LIMIT 1");
-            $opertaion->execute([
+            $opertaion = $this->pdo->prepare("DELETE FROM posts WHERE slug=:slug");
+            $success = $opertaion->execute([
                 ':slug' => $slug
             ]);
 
-            $result = $opertaion->fetchObject("Post");
-
-            if($result)
+            if($success)
             {
-                $opertaion = $this->pdo->prepare("DELETE FROM posts WHERE slug=:slug");
-                if($opertaion->execute([ ':slug' => $slug ]))
-                {
-                    return true;
-                }
-                else
-                {
-                    http_response_code(500);
-                    die("Server Error: Something went wrong during deletion.");
-                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         catch(PDOException $e)
         {
             http_response_code(500);
-            die("Server Error: Fetching - " . $e->getMessage());
+            die("Server Error: Deleting - " . $e->getMessage());
+        } 
+    }
+
+    public function update($title, $body, $slug)
+    {
+        try
+        {
+            $opertaion = $this->pdo->prepare("UPDATE posts SET title=:title, body=:body WHERE slug=:slug");
+            $success = $opertaion->execute([
+                ':title' => $title,
+                ':body' => $body,
+                ':slug' => $slug
+            ]);
+
+            if($success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(PDOException $e)
+        {
+            http_response_code(500);
+            die("Server Error: Updating - " . $e->getMessage());
         } 
     }
 }
