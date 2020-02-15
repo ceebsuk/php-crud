@@ -18,7 +18,7 @@ if(isset($_POST['create_submit']))
         }
         else
         {
-            Util::flashMessage("danger", "Failed: Couldn't create post.");
+            Util::flashMessage("danger", "Failed: Couldn't create post, post may already exist.");
         }
     }
     else
