@@ -45,14 +45,14 @@ require_once('partials/_header.php');
                     <div class="field">
                         <label class="label">Title</label>
                         <div class="control">
-                            <input class="input" type="text" name="title" placeholder="Title">
+                            <input class="input" type="text" name="title" placeholder="Title" <?php if(isset($_POST['title'])) echo 'value='. $_POST['title']?>>
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="label">Body</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="Body" name="body" style="resize: none;"></textarea>
+                            <textarea class="textarea" placeholder="Body" name="body" style="resize: none;"><?php if(isset($_POST['title'])) echo $_POST['title']?></textarea>
                         </div>
                     </div>
 
