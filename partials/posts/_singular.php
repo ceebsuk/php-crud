@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 50px">
+<div class="container">
     <div class="columns">
         <div class="column"></div>
         <div class="column is-half">
@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="level-right">
-                    <a href="index.php" class="button is-success is-outlined is-small">
+                    <a href="index.php" class="button is-success is-small">
                         <span class="icon">
                             <i class="fas fa-long-arrow-alt-left"></i>
                         </span>
@@ -36,7 +36,7 @@
                             </p>
                             <div class="level">
                                 <div class="level-left">
-                                    <a href="index.php" class="button is-success is-outlined is-small">
+                                    <a href="index.php" class="button is-success is-small">
                                         <span class="icon">
                                             <i class="fas fa-long-arrow-alt-left"></i>
                                         </span>
@@ -46,7 +46,7 @@
                                 <div class="level-right">
                                     <form action="delete.php?slug=<?php echo $post->slug ?>" method="post">
                                         <input type="hidden" name="slug" value="<?php echo $post->slug ?>">
-                                        <button class="button is-danger is-outlined is-small" type="submit" name="delete_submit">
+                                        <button class="button is-danger is-small" type="submit" name="delete_submit">
                                             <span class="icon">
                                                 <i class="far fa-times-circle"></i>
                                             </span>

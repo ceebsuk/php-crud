@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 50px">
+<div class="container">
     <div class="columns">
         <div class="column"></div>
         <div class="column is-half">
@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="level-right">
-                    <a href="create.php" class="button is-success is-outlined is-small">
+                    <a href="create.php" class="button is-success is-small">
                         <span class="icon">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -56,7 +56,7 @@
                                                 </p>
                                             </div>
                                             <div class="level-right">
-                                                <a href="update.php?post=<?php echo $r->slug ?>" class="button is-small is-warning is-outlined">
+                                                <a href="update.php?post=<?php echo $r->slug ?>" class="button is-small is-warning">
                                                     <span class="icon">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </span>
@@ -66,12 +66,12 @@
                                         </div>
                                         
                                         <p>
-                                            <?php echo substr($r->body, 0, 80) . "..." ?>
+                                            <?php if(strlen($r->body) >= 80) { echo substr($r->body, 0, 80) . "..."; } else { echo $r->body; } ?>
                                         </p>
 
                                         <div class="level">
                                             <div class="level-left">
-                                                <a href="<?php echo $_SERVER['PHP_SELF'] . "?post=" . $r->slug ?>" class="button is-small is-primary is-outlined">
+                                                <a href="<?php echo $_SERVER['PHP_SELF'] . "?post=" . $r->slug ?>" class="button is-small is-primary">
                                                     <span>Read More</span>
                                                     <span class="icon">
                                                         <i class="fas fa-long-arrow-alt-right"></i>
@@ -81,7 +81,7 @@
                                             <div class="level-right">
                                                 <form action="delete.php?slug=<?php echo $r->slug ?>" method="post">
                                                     <input type="hidden" name="slug" value="<?php echo $r->slug ?>">
-                                                    <button class="button is-danger is-outlined is-small" type="submit" name="delete_submit">
+                                                    <button class="button is-danger is-small" type="submit" name="delete_submit">
                                                         <span class="icon">
                                                             <i class="far fa-times-circle"></i>
                                                         </span>
