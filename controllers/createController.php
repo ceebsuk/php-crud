@@ -45,4 +45,6 @@ if(isset($_POST['sample_posts_submit']))
     $post->create("Nam sed feugiat felis", "Nam sed feugiat felis. Vestibulum quis maximus ex. Sed egestas euismod tortor et elementum. Mauris at quam sem. Cras et tempus eros, eu aliquet eros. Etiam finibus pellentesque dolor, ac ullamcorper augue eleifend sed. Sed ut diam elementum, rhoncus massa eget, maximus sapien.");
 
     Util::flashMessage("success", "Success: Sample posts created successfully.");
+    header('Location: index.php');
+    exit();
 }
