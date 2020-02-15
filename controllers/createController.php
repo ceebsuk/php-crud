@@ -15,6 +15,8 @@ if(isset($_POST['create_submit']))
         if($post->create($title, $body))
         {
             Util::flashMessage("success", "Success: Post created successfully.");
+            header('Location: index.php');
+            exit();
         }
         else
         {

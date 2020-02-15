@@ -21,7 +21,7 @@ class Post
     {
         try
         {
-            $opertaion = $this->pdo->prepare("SELECT title, body, slug FROM posts");
+            $opertaion = $this->pdo->prepare("SELECT title, body, slug FROM posts ORDER BY id DESC");
             $opertaion->execute();
 
             $result = $opertaion->fetchAll(PDO::FETCH_CLASS, "Post");

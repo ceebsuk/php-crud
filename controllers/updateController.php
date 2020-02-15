@@ -40,8 +40,8 @@ else if(isset($_POST['update_submit']))
             // Update the post which returns a bool we can check for.
             if($post->update($title, $body, $slug))
             {
-                Util::flashMessage("success", 'Success: Post updated successfully. <a href="index.php">Back to Posts</a>');
-                header('Location: update.php?post=' . $slug);
+                Util::flashMessage("success", 'Success: Post updated successfully.');
+                header('Location: index.php');
                 exit();
             }
             else
